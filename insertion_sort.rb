@@ -2,24 +2,16 @@ require 'pry'
 
 class InsertionSort
   def sort(array)
-    binding.pry
     sorted_set = [array.shift]
-    array.cycle(array.length-1) do |i|
+    array.cycle(array.length-1) do |element|
       sorted_set_index = 0
-      index = array.index(i)
-        while sorted_set_index < sorted_set.length
-            if i <= sorted_set[sorted_set_index]
-                sorted_set.insert(sorted_set_index,i)
-                array.delete_at(index)
-                break
-            elsif sorted_set_index == sorted_set.length-1
-                sorted_set.insert(sorted_set_index+1,i)
-                break
-                array.delete_at(index)
-            end
-            sorted_set_index+=1
-            break if sorted_set.include?(i)
+      index = array.index(element)
+        while sorted_set[sorted_set_index] < element
+          sorted_set_index += 1
+            break if sorted_set[sorted_set_index].nil?
         end
+        sorted_set.insert(sorted_set_index,element)
+        array.delete_at(index)
     end
   end
 
