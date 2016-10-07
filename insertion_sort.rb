@@ -18,3 +18,4 @@ class InsertionSort
 end
 array = (1..25).to_a.shuffle
 InsertionSort.new.sort(array)
+
