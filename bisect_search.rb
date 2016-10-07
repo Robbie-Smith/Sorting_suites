@@ -1,5 +1,5 @@
 require 'pry'
-class Search
+class BisectSearch
 
   def split(array,num)
     array = array.sort
@@ -21,6 +21,6 @@ class Search
   end
 end
 
-
 values = (1..1000).to_a.sample(1000)
 Search.new.split(values,501)
+
