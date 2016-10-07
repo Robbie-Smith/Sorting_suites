@@ -31,5 +31,6 @@ class MergeSort
   end
 
 end
+
 sorter = MergeSort.new
 sorter.sort(["d", "b", "a", "c",'e','f'])
