@@ -1,28 +1,26 @@
 require 'pry'
 class Search
-def search(num)
-  found = false
-  values = (1..10000).to_a.sample(1000).sort
-  new_search = 0
-  values.each do |v|
-    m = values.fetch(500)
-    break unless values.include?(num)
-    if m.eql?(num)
-      found = true
-      puts "#{found}!"
-    elsif new_search.even?
-      new_search += 1
-      found = true if values[0..500].include?(num)
-      print found if found.eql?(true)
-    elsif new_search.odd?
-      new_search += 1
-      found = true if values[500..1000].include?(num)
-      print found if found.eql?(true)
+
+  def split(array,num)
+    array = array.sort
+    middle_index = (array.length-1) / 2
+    return "Found + #{num}." if array[middle_index].eql?(num)
+    first_half = array[0..middle_index]
+    second_half = array[middle_index..array.length-1]
+    search(first_half,second_half,middle_index,num)
+  end
+
+  def search(first_half,second_half,middle_index,num)
+    search_set = [first_half, second_half]
+    found = false
+    search_set.each_with_index do |value,index|
+      found = true if value.include?(num)
+      break if found.eql?(true)
     end
+    puts "Found #{num}." if found.eql?(true)
   end
 end
 
-end
 
-
-Search.new.search(500)
+values = (1..1000).to_a.sample(1000)
+Search.new.split(values,501)
